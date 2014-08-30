@@ -27,8 +27,10 @@
 # inherit from S4 common
 -include device/htc/s4-common/BoardConfigCommon.mk
 
+USE_CAMERA_STUB := true
+
 # Require bootloader version
-TARGET_BOARD_INFO_FILE ?= device/htc/valentewx/board-info.txt
+TARGET_BOARD_INFO_FILE := device/htc/valentewx/board-info.txt
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := valentewx
@@ -36,15 +38,16 @@ TARGET_BOOTLOADER_BOARD_NAME := valentewx
 # Kernel
 TARGET_KERNEL_CONFIG := valente_wx_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/valentewx
-#TARGET_KERNEL_CUSTOM_TOOLCHAIN := linaro48x
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := linaro48x-a9
-TARGET_KERNEL_CUSTOM_TOOLCHAIN_SUFFIX := arm-cortex_a9-linux-gnueabihf
+TARGET_GCC_VERSION_AND := 4.8-sm
+TARGET_GCC_VERSION_ARM := 4.9-sm
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01600000
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/valentewx/bluetooth
 
 # Use libril in the device tree
 BOARD_PROVIDES_LIBRIL := true
+BOARD_RIL_FIVE_SEARCH_RESPONSES := true
 
 # USB
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
@@ -87,7 +90,6 @@ BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true
 
 # Recovery
-#TARGET_RECOVERY_FSTAB := device/htc/valentewx/recovery/recovery.fstab
 TARGET_RECOVERY_INITRC := device/htc/valentewx/recovery/init.rc
 
 #BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1

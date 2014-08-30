@@ -14,7 +14,8 @@
 # limitations under the License.
 #
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, build/target/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # common S4 configs
 $(call inherit-product, device/htc/s4-common/s4.mk)
@@ -24,11 +25,7 @@ DEVICE_PACKAGE_OVERLAYS += device/htc/valentewx/overlay
 # Boot ramdisk setup
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.target.rc \
-    remount.qcom
-
-PRODUCT_COPY_FILES += device/htc/valentewx/rootdir/etc/init.qcom.rc:root/init.qcom.rc
-
+    init.target.rc
 
 # HTC BT audio config
 PRODUCT_COPY_FILES += device/htc/valentewx/configs/AudioBTID.csv:system/etc/AudioBTID.csv
@@ -84,6 +81,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures=1 \
     dalvik.vm.dexopt-flags=m=y
 
+# ADB
+ADDITIONAL_DEFAULT_PROPERTIES+=  ro.adb.secure=0
+
 # We have enough space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
@@ -95,15 +95,18 @@ PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 PRODUCT_LOCALES += ja_JP hdpi
 
+# Change the default locale to Japanese.
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.product.locale.language=ja \
+    ro.product.locale.region=JP
+
+# Japanese font
+PRODUCT_COPY_FILES += \
+    device/htc/valentewx/config/fallback_fonts.xml:system/vendor/etc/fallback_fonts.xml \
+	frameworks/base/data/fonts/DroidSansJapanese.ttf:system/fonts/DroidSansJapanese.ttf
+
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/htc/valentewx/valentewx-vendor.mk)
 
 # call dalvik heap config
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
-
-# Discard inherited values and use our own instead.
-PRODUCT_DEVICE := valentewx
-PRODUCT_NAME := valentewx
-PRODUCT_BRAND := KDDI
-PRODUCT_MODEL := ISW13HT
-PRODUCT_MANUFACTURER := HTC
