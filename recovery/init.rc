@@ -12,6 +12,7 @@ on init
     export INTERNAL_STORAGE /sdcard
 
     symlink /system/etc /etc
+    symlink /sbin/busybox /sbin/sh
 
     mkdir /boot
     mkdir /recovery
@@ -70,6 +71,8 @@ on boot
     domainname localdomain
 
     class_start default
+
+setprop persist.sys.adb.shell "/sbin/sh"
 
 service ueventd /sbin/ueventd
     critical
