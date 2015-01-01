@@ -27,10 +27,8 @@
 # inherit from S4 common
 -include device/htc/s4-common/BoardConfigCommon.mk
 
-USE_CAMERA_STUB := true
-
 # Require bootloader version
-TARGET_BOARD_INFO_FILE := device/htc/valentewx/board-info.txt
+TARGET_BOARD_INFO_FILE ?= device/htc/valentewx/board-info.txt
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := valentewx
@@ -40,10 +38,12 @@ TARGET_KERNEL_CONFIG := valente_wx_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/valentewx
 TARGET_GCC_VERSION_AND := 4.8-sm
 TARGET_GCC_VERSION_ARM := 4.9-sm
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01600000
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/valentewx/bluetooth
+
+# Camera
+BOARD_CAMERA_FRONT_VGA := true
 
 # Use libril in the device tree
 BOARD_PROVIDES_LIBRIL := true
@@ -86,14 +86,17 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 # Vold
 #BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 BOARD_VOLD_MAX_PARTITIONS := 39
-BOARD_USES_MMCUTILS := true
-BOARD_HAS_NO_MISC_PARTITION := true
 
 # Recovery
-TARGET_RECOVERY_INITRC := device/htc/valentewx/recovery/init.rc
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_10x18.h\"
+TARGET_RECOVERY_FSTAB := device/htc/valentewx/rootdir/etc/fstab.qcom
+BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
+BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk0p39
+BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
+#BOARD_USES_MMCUTILS := true
+BOARD_HAS_NO_MISC_PARTITION := true
+BOARD_RECOVERY_SWIPE := true
 
-#BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
-#BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1
 
 # TWRP
 DEVICE_RESOLUTION := 540x960
@@ -101,9 +104,6 @@ TW_FLASH_FROM_STORAGE := true
 TW_DEFAULT_EXTERNAL_STORAGE := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TW_INTERNAL_STORAGE_PATH := "/sdcard"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "sdcard"
-TW_EXTERNAL_STORAGE_PATH := "/external_sd"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 TW_INCLUDE_DUMLOCK := true
 TW_INCLUDE_JB_CRYPTO := true
+TW_NO_SCREEN_TIMEOUT := true

@@ -14,8 +14,7 @@
 # limitations under the License.
 #
 
-$(call inherit-product, build/target/product/full_base_telephony.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # common S4 configs
 $(call inherit-product, device/htc/s4-common/s4.mk)
@@ -62,14 +61,6 @@ PRODUCT_COPY_FILES += \
     device/htc/valentewx/idc/projector_input.idc:system/usr/idc/projector_input.idc \
     device/htc/valentewx/idc/tv-touchscreen.idc:system/usr/idc/tv-touchscreen.idc
 
-# Recovery
-PRODUCT_COPY_FILES += \
-    device/htc/valentewx/rootdir/etc/fstab.qcom:recovery/root/fstab.qcom \
-    device/htc/valentewx/recovery/sbin/choice_fn:recovery/root/sbin/choice_fn \
-    device/htc/valentewx/recovery/sbin/detect_key:recovery/root/sbin/detect_key \
-    device/htc/valentewx/recovery/sbin/offmode_charging:recovery/root/sbin/offmode_charging \
-    device/htc/valentewx/recovery/sbin/power_test:recovery/root/sbin/power_test
-
 # Torch
 PRODUCT_PACKAGES += \
     Torch
@@ -102,7 +93,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Japanese font
 PRODUCT_COPY_FILES += \
-    device/htc/valentewx/config/fallback_fonts.xml:system/vendor/etc/fallback_fonts.xml \
 	frameworks/base/data/fonts/DroidSansJapanese.ttf:system/fonts/DroidSansJapanese.ttf
 
 # call the proprietary setup
