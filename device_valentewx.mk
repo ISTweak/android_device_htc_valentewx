@@ -24,11 +24,7 @@ DEVICE_PACKAGE_OVERLAYS += device/htc/valentewx/overlay
 # Boot ramdisk setup
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.target.rc \
-    remount.qcom
-
-PRODUCT_COPY_FILES += device/htc/valentewx/rootdir/etc/init.qcom.rc:root/init.qcom.rc
-
+    init.target.rc
 
 # HTC BT audio config
 PRODUCT_COPY_FILES += device/htc/valentewx/configs/AudioBTID.csv:system/etc/AudioBTID.csv
@@ -65,14 +61,6 @@ PRODUCT_COPY_FILES += \
     device/htc/valentewx/idc/projector_input.idc:system/usr/idc/projector_input.idc \
     device/htc/valentewx/idc/tv-touchscreen.idc:system/usr/idc/tv-touchscreen.idc
 
-# Recovery
-PRODUCT_COPY_FILES += \
-    device/htc/valentewx/rootdir/etc/fstab.qcom:recovery/root/fstab.qcom \
-    device/htc/valentewx/recovery/sbin/choice_fn:recovery/root/sbin/choice_fn \
-    device/htc/valentewx/recovery/sbin/detect_key:recovery/root/sbin/detect_key \
-    device/htc/valentewx/recovery/sbin/offmode_charging:recovery/root/sbin/offmode_charging \
-    device/htc/valentewx/recovery/sbin/power_test:recovery/root/sbin/power_test
-
 # Torch
 PRODUCT_PACKAGES += \
     Torch
@@ -84,6 +72,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures=1 \
     dalvik.vm.dexopt-flags=m=y
 
+# ADB
+ADDITIONAL_DEFAULT_PROPERTIES+=  ro.adb.secure=0
+
 # We have enough space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
@@ -94,6 +85,16 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 PRODUCT_LOCALES += ja_JP hdpi
+
+# Change the default locale to Japanese.
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.product.locale.language=ja \
+    ro.product.locale.region=JP
+
+# Japanese font
+PRODUCT_COPY_FILES += \
+    device/htc/valentewx/config/fallback_fonts.xml:system/vendor/etc/fallback_fonts.xml \
+	frameworks/base/data/fonts/DroidSansJapanese.ttf:system/fonts/DroidSansJapanese.ttf
 
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/htc/valentewx/valentewx-vendor.mk)
