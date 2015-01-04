@@ -20,6 +20,9 @@ on init
     export SECONDARY_STORAGE /storage/sdcard1
 
 # Services start here
+service prima /system/bin/sh /system/etc/init.prima.wifi.sh
+	class core
+    oneshot
 
 service akmd /system/bin/akmd
     class main

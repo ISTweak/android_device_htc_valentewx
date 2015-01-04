@@ -26,6 +26,9 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     init.target.rc
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/init.prima.wifi.sh:/system/etc/init.prima.wifi.sh
+
 # HTC BT audio config
 PRODUCT_COPY_FILES += device/htc/valentewx/configs/AudioBTID.csv:system/etc/AudioBTID.csv
 
@@ -93,7 +96,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Japanese font
 PRODUCT_COPY_FILES += \
-    device/htc/valentewx/config/fallback_fonts.xml:system/vendor/etc/fallback_fonts.xml \
+    device/htc/valentewx/configs/fallback_fonts.xml:system/vendor/etc/fallback_fonts.xml \
 	frameworks/base/data/fonts/DroidSansJapanese.ttf:system/fonts/DroidSansJapanese.ttf
 
 # call the proprietary setup
