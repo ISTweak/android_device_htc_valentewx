@@ -24,14 +24,6 @@ service prima /system/bin/sh /system/etc/init.prima.wifi.sh
 	class core
     oneshot
 
-service akmd /system/bin/akmd
-    class main
-    user compass
-    group compass misc input
-
-service cand /system/bin/cand
-    user root
-
 service ewtzmud /system/bin/ewtzmud
     class main
     user system

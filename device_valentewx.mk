@@ -75,9 +75,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures=1 \
     dalvik.vm.dexopt-flags=m=y
 
-# ADB
-ADDITIONAL_DEFAULT_PROPERTIES+=  ro.adb.secure=0
-
 # We have enough space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
@@ -93,11 +90,6 @@ PRODUCT_LOCALES += ja_JP hdpi
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.product.locale.language=ja \
     ro.product.locale.region=JP
-
-# Japanese font
-PRODUCT_COPY_FILES += \
-    device/htc/valentewx/configs/fallback_fonts.xml:system/vendor/etc/fallback_fonts.xml \
-	frameworks/base/data/fonts/DroidSansJapanese.ttf:system/fonts/DroidSansJapanese.ttf
 
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/htc/valentewx/valentewx-vendor.mk)
