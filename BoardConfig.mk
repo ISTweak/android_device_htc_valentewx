@@ -36,7 +36,7 @@ TARGET_BOOTLOADER_BOARD_NAME := valentewx
 # Kernel
 TARGET_KERNEL_CONFIG := valente_wx_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/valentewx
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.9-sm
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.9-sm/bin
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/valentewx/bluetooth
