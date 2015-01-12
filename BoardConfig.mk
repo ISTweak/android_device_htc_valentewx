@@ -93,7 +93,7 @@ TARGET_RECOVERY_FSTAB := device/htc/valentewx/rootdir/etc/fstab.qcom
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
 BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk0p39
 BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
-#BOARD_USES_MMCUTILS := true
+BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_RECOVERY_SWIPE := true
 
