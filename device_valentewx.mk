@@ -26,6 +26,9 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     init.target.rc
 
+PRODUCT_PACKAGES += \
+	twrp.fstab
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.prima.wifi.sh:/system/etc/init.prima.wifi.sh
 
@@ -90,6 +93,12 @@ PRODUCT_LOCALES += ja_JP hdpi
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.product.locale.language=ja \
     ro.product.locale.region=JP
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.root_access=1 \
+	ro.adb.secure=0 \
+	ro.secure=0 \
+	ro.allow.mock.location=1
 
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/htc/valentewx/valentewx-vendor.mk)
