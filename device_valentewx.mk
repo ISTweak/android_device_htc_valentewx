@@ -29,6 +29,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	twrp.fstab
 
+PRODUCT_PACKAGES += \
+    FM2 \
+    FMRecord \
+    libqcomfm_jni \
+    qcom.fmradio
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.prima.wifi.sh:/system/etc/init.prima.wifi.sh
 
